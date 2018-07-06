@@ -3,3 +3,8 @@
 
 
 Kitty Blog 后端 Api
+
+数据库 sqlite
+
+
+参考wordpress数据库字段
