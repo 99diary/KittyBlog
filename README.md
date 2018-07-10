@@ -9,7 +9,7 @@ A blog base on .NET Core
 
 `KittyBlog.API` API
 
-`kittyblog.UI` Font-End
+`KittyBlog.UI` Front-End
 
 `kittyblog-react-native` Mobile APP
 
