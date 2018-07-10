@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.ComponentModel.DataAnnotations;
 
 namespace KittyBlog.Model
 {
@@ -9,6 +10,7 @@ namespace KittyBlog.Model
     /// </summary>
     public class Comment
     {
+        [Key]
         /// <summary>
         /// 自增唯一ID
         /// </summary>

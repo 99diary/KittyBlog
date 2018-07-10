@@ -1,6 +1,6 @@
 ﻿-- create table in sqlite
 
-create table Posts
+create table Post
 (
 	ID integer NOT NULL PRIMARY KEY autoincrement,
 	AuthorID integer,

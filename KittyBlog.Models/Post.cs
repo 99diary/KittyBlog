@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.ComponentModel.DataAnnotations;
 
 namespace KittyBlog.Model
 {
     /// <summary>
     /// 文章
     /// </summary>
-    public class Posts
+    public class Post
     {
+        [Key]
         public Int64 ID { get; set; }
         public Int64 AuthorID { get; set; }
         /// <summary>

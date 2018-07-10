@@ -1,10 +1,41 @@
 # KittyBlog
-一个基于.Net Core的博客程序
+A blog base on .NET Core
 
 
-Kitty Blog 后端 Api
+### skill
 
-数据库 sqlite
+.NET Core + EF + Three-tier architecture + .NET MVC + Sqlite
 
 
-参考wordpress数据库字段
+`KittyBlog.API` API
+
+`kittyblog.UI` Font-End
+
+`kittyblog-react-native` Mobile APP
+
+
+### todo list
+
+- [x] posts list 
+
+
+### install
+
+
+### Q&A 
+
+[WordPress数据库及各表结构分析](https://www.cnblogs.com/wordblog/p/6591499.html)
+
+[ASP.NET Core MVC with Entity Framework Core](https://github.com/damienbod/AspNetCoreMultipleProject)
+
+[.NET Core Connection Strings](https://docs.microsoft.com/en-us/ef/core/miscellaneous/connection-strings)
+
+
+
+### Tools
+
+Build By Visual Studio 2017
+
+### License
+
+Code in KittyBlog project is licensed under the GPL

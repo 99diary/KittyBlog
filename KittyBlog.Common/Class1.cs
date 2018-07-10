@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace KittyBlog.EF
+namespace KittyBlog.Common
 {
     public class Class1
     {

@@ -2,7 +2,8 @@
 
 namespace KittyBlog.IBLL
 {
-    public class Class1
+    public interface IPosts
     {
+
     }
 }
