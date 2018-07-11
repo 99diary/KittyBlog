@@ -4,12 +4,38 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using KittyBlog.DAL;
+using KittyBlog.IDAL;
+using KittyBlog.Model;
+
 
 namespace KittyBlog.Api.Controllers
 {
     [Route("api/[controller]")]
     public class PostController : Controller
     {
+        private readonly IPostProvider _iPostProvider;
+
+        public PostController(IPostProvider iPostProvider)
+        {
+            _iPostProvider = iPostProvider;
+        }
+
+        [HttpGet]
+        [Route("GetPosts")]
+        public IEnumerable<Post> GetPosts()
+        {
+            return _iPostProvider.GetAllPosts();
+        }
+
+        [HttpGet]
+        [Route("AP")]
+        public List<Post> GetAllPosts()
+        {
+            return _iPostProvider.GetAllPosts();
+        }
+
+        
         // GET: Post
         public ActionResult Index()
         {

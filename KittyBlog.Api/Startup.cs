@@ -35,13 +35,14 @@ namespace KittyBlog.Api
         {
             var sqlConnectionString = Configuration.GetConnectionString("KittyBlogSqliteDatabase");
             services.AddDbContext<PostContext>(options =>
-                //options.UseSqlite(
-                //    sqlConnectionString,
-                //    b => b.MigrationsAssembly("AspNetCoreMultipleProject")
-                //)
+                options.UseSqlite(
+                    sqlConnectionString,
+                    b => b.MigrationsAssembly("AspNetCoreMultipleProject")
+                )
 
-                options.UseSqlite(sqlConnectionString)
+                //options.UseSqlite(sqlConnectionString)
             );
+            services.AddScoped<IDAL.IPostProvider, DAL.PostProvider>();
             services.AddMvc();
         }
 

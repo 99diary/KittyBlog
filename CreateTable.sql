@@ -14,7 +14,7 @@ create table Post
 	PingStatus integer,
 	PostPassword text,
 	ShortName text,
-	ModifiedTimeStamp text,
+	UpdateTimeStamp text,
 	PostParent text,
 	Guid text,
 	MenuOrder integer,

@@ -4,6 +4,7 @@ using System.Text;
 using Microsoft.EntityFrameworkCore;
 using KittyBlog.Model;
 using System.Linq;
+using KittyBlog.Common;
 
 namespace KittyBlog.DAL
 {
@@ -19,7 +20,7 @@ namespace KittyBlog.DAL
             builder.Entity<Post>().HasKey(m => m.ID);
 
             // shadow properties
-            builder.Entity<Post>().Property<DateTime>("UpdatedTimestamp");
+            builder.Entity<Post>().Property<Int64>("PublishTimeStamp");
 
             base.OnModelCreating(builder);
         }
@@ -38,10 +39,9 @@ namespace KittyBlog.DAL
             var modifiedSourceInfo =
                 ChangeTracker.Entries<T>()
                     .Where(e => e.State == EntityState.Added || e.State == EntityState.Modified);
-
             foreach (var entry in modifiedSourceInfo)
             {
-                entry.Property("PublishTimeStamp").CurrentValue = DateTime.UtcNow;
+                entry.Property("UpdateTimeStamp").CurrentValue = TimeSpanService.GetCurrentTimeUnix();
             }
         }
     }

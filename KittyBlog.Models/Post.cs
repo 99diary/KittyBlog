@@ -52,7 +52,7 @@ namespace KittyBlog.Model
         /// <summary>
         /// 修改时间
         /// </summary>
-        public Int64 ModifiedTimeStamp { get; set; }
+        public Int64 UpdateTimeStamp { get; set; }
         /// <summary>
         /// 父文章，主要用于page
         /// </summary>
