@@ -13,7 +13,7 @@ namespace KittyBlog.DAL
         public PostContext(DbContextOptions<PostContext> options) : base(options)
         { }
 
-        public DbSet<Post> Posts { get; set; }
+        public DbSet<Post> Post { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -41,7 +41,7 @@ namespace KittyBlog.DAL
                     .Where(e => e.State == EntityState.Added || e.State == EntityState.Modified);
             foreach (var entry in modifiedSourceInfo)
             {
-                entry.Property("UpdateTimeStamp").CurrentValue = TimeSpanService.GetCurrentTimeUnix();
+                entry.Property("PublishTimeStamp").CurrentValue = TimeSpanService.GetCurrentTimeUnix();
             }
         }
     }

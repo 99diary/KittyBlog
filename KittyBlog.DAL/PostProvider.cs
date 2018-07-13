@@ -23,37 +23,39 @@ namespace KittyBlog.DAL
 
         public bool AddOnePost(Post post)
         {
-            _context.Posts.Add(post);
+            _context.Post.Add(post);
             return _context.SaveChanges() == 1;
         }
 
         public bool DelOnePost(long id)
         {
-            var entity = _context.Posts.First(t => t.ID == id);
-            _context.Posts.Remove(entity);
+            var entity = _context.Post.First(t => t.ID == id);
+            _context.Post.Remove(entity);
             return _context.SaveChanges() == 1;
         }
 
         public bool UpdateOnePost(Post post)
         {
-            _context.Posts.Update(post);
+            _context.Post.Update(post);
             return _context.SaveChanges() == 1;
         }
 
         public Post GetOnePostByID(long id)
         {
-            return _context.Posts.First(t => t.ID == id);
+            return _context.Post.First(t => t.ID == id);
         }
 
         public List<Post> GetPostsByAuthorID(long authorID)
         {
-            return _context.Posts.OrderByDescending(post => EF.Property<Int64>(post, "PublishTimeStamp")).Where(post => post.AuthorID == authorID).ToList();
+            //return _context.Posts.OrderByDescending(post => EF.Property<Int64>(post, "PublishTimeStamp")).Where(post => post.AuthorID == authorID).ToList();
+            return _context.Post.Where(post => post.AuthorID == authorID).ToList();
         }
 
         public List<Post> GetAllPosts()
         {
             // Using the shadow property EF.Property<DateTime>(dataEventRecord)
-            return _context.Posts.OrderByDescending(post => EF.Property<Int64>(post, "PublishTimeStamp")).ToList();
+            //return _context.Posts.OrderByDescending(post => EF.Property<Int64>(post, "PublishTimeStamp")).ToList();
+            return _context.Post.ToList();
         }
     }
 }
