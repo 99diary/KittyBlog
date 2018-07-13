@@ -21,6 +21,14 @@ A blog base on .NET Core
 
 ### install
 
+start iis
+
+test api:
+
+```link
+post list  http://localhost:63478/api/post/ap
+```
+
 
 ### Q&A 
 
