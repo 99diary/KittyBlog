@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using KittyBlog.DAL;
 using KittyBlog.IDAL;
 using KittyBlog.Model;
+using Newtonsoft.Json;
 
 
 namespace KittyBlog.Api.Controllers
@@ -30,12 +31,32 @@ namespace KittyBlog.Api.Controllers
 
         [HttpGet]
         [Route("AP")]
-        public List<Post> GetAllPosts()
+        public Page GetAllPosts()
         {
-            return _iPostProvider.GetAllPosts();
+            List<Post> lst= _iPostProvider.GetAllPosts();
+            Page page = new Page();
+            if (lst.Count >= 0)
+            {
+                page.Success = true;
+                page.Code = EnumCode.Success;
+                page.Data = lst;
+            }
+            else
+            {
+                page.Success = false;
+                page.Code = EnumCode.DataError;
+                page.Data = new Object();
+            }
+            return page;
         }
 
-        
+        //[HttpPost]
+        //[Route("AddOnePost")]
+        //public Page AddOnePost(Post post)
+        //{
+        //    _iPostProvider.AddOnePost(post);
+        //}
+
         // GET: Post
         public ActionResult Index()
         {
