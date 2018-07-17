@@ -23,17 +23,57 @@ namespace KittyBlog.Api.Controllers
         }
 
         [HttpGet]
-        [Route("GetPosts")]
         public IEnumerable<Post> GetPosts()
         {
             return _iPostProvider.GetAllPosts();
         }
 
+        [HttpPost]
+        [Route("AddOnePost")]
+        public Page AddOnePost(Post post)
+        {
+            Page page = new Page();
+            page.Success = _iPostProvider.AddOnePost(post);
+            page.Code = page.Success ? EnumCode.Success : EnumCode.Failed;
+            return page;
+        }
+
+        [HttpPost]
+        [Route("DelOnePost")]
+        public Page DelOnePost(Int64 id)
+        {
+            Page page = new Page();
+            page.Success = _iPostProvider.DelOnePost(id);
+            page.Code = page.Success ? EnumCode.Success : EnumCode.Failed;
+            return page;
+        }
+
+        [HttpPost]
+        [Route("DelOnePost")]
+        public Page UpdateOnePost(Post post)
+        {
+            Page page = new Page();
+            page.Success = _iPostProvider.UpdateOnePost(post);
+            page.Code = page.Success?EnumCode.Success:EnumCode.Failed;
+            return page;
+        }
+
         [HttpGet]
-        [Route("AP")]
+        [Route("GetOnePostByID")]
+        public Page GetOnePostByID(Int64 id)
+        {
+            Page page = new Page();
+            page.Data = _iPostProvider.GetOnePostByID(id); ;
+            page.Success = page.Data != null;
+            page.Code = page.Success ? EnumCode.Success : EnumCode.Failed;
+            return page;
+        }
+
+        [HttpGet]
+        [Route("GetAllPosts")]
         public Page GetAllPosts()
         {
-            List<Post> lst= _iPostProvider.GetAllPosts();
+            List<Post> lst = _iPostProvider.GetAllPosts();
             Page page = new Page();
             if (lst.Count >= 0)
             {
@@ -45,97 +85,112 @@ namespace KittyBlog.Api.Controllers
             {
                 page.Success = false;
                 page.Code = EnumCode.DataError;
-                page.Data = new Object();
             }
             return page;
         }
 
-        //[HttpPost]
-        //[Route("AddOnePost")]
-        //public Page AddOnePost(Post post)
+
+        [HttpGet]
+        [Route("GetAllPosts")]
+        public Page GetPostsByAuthorID(Int64 authorID)
+        {
+            List<Post> lst = _iPostProvider.GetPostsByAuthorID(authorID);
+            Page page = new Page();
+            if (lst.Count >= 0)
+            {
+                page.Success = true;
+                page.Code = EnumCode.Success;
+                page.Data = lst;
+            }
+            else
+            {
+                page.Success = false;
+                page.Code = EnumCode.DataError;
+            }
+            return page;
+        }
+
+
+
+        //// GET: Post
+        //public ActionResult Index()
         //{
-        //    _iPostProvider.AddOnePost(post);
+        //    return View();
         //}
 
-        // GET: Post
-        public ActionResult Index()
-        {
-            return View();
-        }
+        //// GET: Post/Details/5
+        //public ActionResult Details(int id)
+        //{
+        //    return View();
+        //}
 
-        // GET: Post/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
+        //// GET: Post/Create
+        //public ActionResult Create()
+        //{
+        //    return View();
+        //}
 
-        // GET: Post/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
+        //// POST: Post/Create
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Create(IFormCollection collection)
+        //{
+        //    try
+        //    {
+        //        // TODO: Add insert logic here
 
-        // POST: Post/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
+        //        return RedirectToAction(nameof(Index));
+        //    }
+        //    catch
+        //    {
+        //        return View();
+        //    }
+        //}
 
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+        //// GET: Post/Edit/5
+        //public ActionResult Edit(int id)
+        //{
+        //    return View();
+        //}
 
-        // GET: Post/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
+        //// POST: Post/Edit/5
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Edit(int id, IFormCollection collection)
+        //{
+        //    try
+        //    {
+        //        // TODO: Add update logic here
 
-        // POST: Post/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
+        //        return RedirectToAction(nameof(Index));
+        //    }
+        //    catch
+        //    {
+        //        return View();
+        //    }
+        //}
 
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+        //// GET: Post/Delete/5
+        //public ActionResult Delete(int id)
+        //{
+        //    return View();
+        //}
 
-        // GET: Post/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
+        //// POST: Post/Delete/5
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Delete(int id, IFormCollection collection)
+        //{
+        //    try
+        //    {
+        //        // TODO: Add delete logic here
 
-        // POST: Post/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+        //        return RedirectToAction(nameof(Index));
+        //    }
+        //    catch
+        //    {
+        //        return View();
+        //    }
+        //}
     }
 }

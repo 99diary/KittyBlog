@@ -11,7 +11,7 @@ namespace KittyBlog.Model
     {
         public Boolean Success { get; set; }
         public EnumCode Code { get; set; }
-        public Object Data { get; set; }
+        public Object Data { get; set; } = new Object()
     }
 
     /// <summary>
@@ -19,9 +19,10 @@ namespace KittyBlog.Model
     /// </summary>
     public enum EnumCode
     {
-        Success=10001,
-        NoAccess=20001,
-        DataError=20002,
-        LackParam=30001
+        Success = 10001,
+        Failed=10002,
+        NoAccess = 20001,
+        DataError = 20002,
+        LackParam = 30001
     }
 }

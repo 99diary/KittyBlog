@@ -47,15 +47,15 @@ namespace KittyBlog.DAL
 
         public List<Post> GetPostsByAuthorID(long authorID)
         {
-            //return _context.Posts.OrderByDescending(post => EF.Property<Int64>(post, "PublishTimeStamp")).Where(post => post.AuthorID == authorID).ToList();
-            return _context.Post.Where(post => post.AuthorID == authorID).ToList();
+            return _context.Post.OrderByDescending(post => EF.Property<Int64>(post, "PublishTimeStamp")).Where(post => post.AuthorID == authorID).ToList();
+            //return _context.Post.Where(post => post.AuthorID == authorID).ToList();
         }
 
         public List<Post> GetAllPosts()
         {
             // Using the shadow property EF.Property<DateTime>(dataEventRecord)
-            //return _context.Posts.OrderByDescending(post => EF.Property<Int64>(post, "PublishTimeStamp")).ToList();
-            return _context.Post.ToList();
+            return _context.Post.OrderByDescending(post => EF.Property<Int64>(post, "PublishTimeStamp")).ToList();
+            //return _context.Post.ToList();
         }
     }
 }
