@@ -11,7 +11,7 @@ namespace KittyBlog.Model
     {
         public Boolean Success { get; set; }
         public EnumCode Code { get; set; }
-        public Object Data { get; set; } = new Object()
+        public Object Data { get; set; } = new Object();
     }
 
     /// <summary>

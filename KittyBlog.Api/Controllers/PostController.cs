@@ -8,12 +8,13 @@ using KittyBlog.DAL;
 using KittyBlog.IDAL;
 using KittyBlog.Model;
 using Newtonsoft.Json;
-
+using KittyBlog.API.Controllers;
+using KittyBlog.API.Filter;
 
 namespace KittyBlog.Api.Controllers
 {
     [Route("api/[controller]")]
-    public class PostController : Controller
+    public class PostController : BaseController
     {
         private readonly IPostProvider _iPostProvider;
 
@@ -27,7 +28,7 @@ namespace KittyBlog.Api.Controllers
         {
             return _iPostProvider.GetAllPosts();
         }
-
+        
         [HttpPost]
         [Route("AddOnePost")]
         public Page AddOnePost(Post post)
@@ -38,7 +39,7 @@ namespace KittyBlog.Api.Controllers
             return page;
         }
 
-        [HttpPost]
+        [HttpPost("{id}")]
         [Route("DelOnePost")]
         public Page DelOnePost(Int64 id)
         {
@@ -49,7 +50,7 @@ namespace KittyBlog.Api.Controllers
         }
 
         [HttpPost]
-        [Route("DelOnePost")]
+        [Route("UpdateOnePost")]
         public Page UpdateOnePost(Post post)
         {
             Page page = new Page();
@@ -70,6 +71,7 @@ namespace KittyBlog.Api.Controllers
         }
 
         [HttpGet]
+        [TokenFilterAttribute()]
         [Route("GetAllPosts")]
         public Page GetAllPosts()
         {
@@ -90,8 +92,8 @@ namespace KittyBlog.Api.Controllers
         }
 
 
-        [HttpGet]
-        [Route("GetAllPosts")]
+        [HttpPost("{authorID}")]
+        [Route("GetPostsByAuthorID")]
         public Page GetPostsByAuthorID(Int64 authorID)
         {
             List<Post> lst = _iPostProvider.GetPostsByAuthorID(authorID);
