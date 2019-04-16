@@ -10,9 +10,9 @@ namespace KittyBlog.IDAL
         bool DelOnePost(Int64 id);
         bool UpdateOnePost(Post post);
 
-        Post GetOnePostByID(Int64 id);
+        //Post GetOnePostByID(Int64 id);
 
-        List<Post> GetPostsByAuthorID(Int64 id);
+        //List<Post> GetPostsByAuthorID(Int64 id);
 
         List<Post> GetAllPosts();
     }

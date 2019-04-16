@@ -40,22 +40,32 @@ namespace KittyBlog.DAL
             return _context.SaveChanges() == 1;
         }
 
-        public Post GetOnePostByID(long id)
+        public DbSet<Post> GetAllPosts()
         {
-            return _context.Post.First(t => t.ID == id);
+            return _context.Post;
         }
 
-        public List<Post> GetPostsByAuthorID(long authorID)
-        {
-            return _context.Post.OrderByDescending(post => EF.Property<Int64>(post, "PublishTimeStamp")).Where(post => post.AuthorID == authorID).ToList();
-            //return _context.Post.Where(post => post.AuthorID == authorID).ToList();
-        }
+        //public Post GetOnePostByID(long id)
+        //{
+        //    return _context.Post.First(t => t.ID == id);
+        //}
 
-        public List<Post> GetAllPosts()
-        {
-            // Using the shadow property EF.Property<DateTime>(dataEventRecord)
-            return _context.Post.OrderByDescending(post => EF.Property<Int64>(post, "PublishTimeStamp")).ToList();
-            //return _context.Post.ToList();
-        }
+        //public List<Post> GetPostsByAuthorID(long authorID)
+        //{
+        //    return _context.Post.OrderByDescending(post => EF.Property<Int64>(post, "PublishTimeStamp")).Where(post => post.AuthorID == authorID).ToList();
+        //    //return _context.Post.Where(post => post.AuthorID == authorID).ToList();
+        //}
+
+        //public List<Post> GetAllPosts()
+        //{
+        //    // Using the shadow property EF.Property<DateTime>(dataEventRecord)
+        //    return _context.Post.OrderByDescending(post => EF.Property<Int64>(post, "PublishTimeStamp")).ToList();
+        //    //return _context.Post.ToList();
+        //}
+
+        //public List<Post> GetPostsByPage(Int32 pageNum,Int32 pageSize)
+        //{
+        //    return _context.Post.OrderByDescending(post => EF.Property<Int64>(post, "PublishTimeStamp")).Skip((pageNum - 1) * pageSize).Take(pageSize).ToList();
+        //}
     }
 }

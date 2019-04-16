@@ -20,8 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\KittyBlog.DAL\KittyBlog.DAL.csproj" />
-    <ProjectReference Include="..\KittyBlog.IDAL\KittyBlog.IDAL.csproj" />
+    <ProjectReference Include="..\KittyBlog.BLL\KittyBlog.BLL.csproj" />
     <ProjectReference Include="..\KittyBlog.Models\KittyBlog.Model.csproj" />
   </ItemGroup>
 
